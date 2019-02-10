@@ -19,7 +19,7 @@ CREATE TABLE boards (
   id SERIAL PRIMARY KEY,
   title VARCHAR NOT NULL,
   description VARCHAR,
-  -- user_id INT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  user_id INT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
   category VARCHAR,
   created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
@@ -30,8 +30,8 @@ CREATE TABLE pins (
   title VARCHAR NOT NULL,
   link_url VARCHAR NOT NULL,
   image_url VARCHAR NOT NULL,
-  -- user_id INT REFERENCES users(id) ON DELETE CASCADE,
-  -- original_poster_id INT REFERENCES users(id) ON DELETE SET NULL,
+  user_id INT REFERENCES users(id) ON DELETE CASCADE,
+  original_poster_id INT REFERENCES users(id) ON DELETE SET NULL,
   board_id INT REFERENCES boards(id) ON DELETE CASCADE,
   created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
