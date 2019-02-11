@@ -53,6 +53,17 @@ pins
 
 /api/pins/search (category and title)
 
+# FRONTEND
+
+/login
+/signup
+/ - Shows numerous pins  
+/:user/boards
+/:user/:board
+/:user/pins
+/pin/:pin_id
+/:user/search
+
 
 
 
