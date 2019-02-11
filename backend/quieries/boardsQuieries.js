@@ -11,7 +11,7 @@ const createBoard = (req, res, next) => {
       res.status(200).json({
         newBoard: board,
         status: "success",
-        message: "NEW USER ADDED!"
+        message: "NEW BOARD ADDED!"
       });
     })
     .catch(err => next(err));
@@ -24,7 +24,7 @@ const getBoard = (req, res, next) => {
       res.status(200).json({
         board,
         status: "success",
-        message: "USER RETREIVED!"
+        message: "BOARD RETREIVED!"
       });
     })
     .catch(err => next(err));

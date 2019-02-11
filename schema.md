@@ -51,7 +51,7 @@ pins
 /api/pins/:id - DELETE - deletes pin  
 /api/pins/:id - PATCH - updates a pin  
 
-/api/search/pins/ (category and title)
+/api/pins/search (category and title)
 
 
 
