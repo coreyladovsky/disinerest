@@ -30,6 +30,7 @@ pins
 
 # BACKEND
 ### USERS
+```
 /api/users/ - POST - creates a new user
 /api/users/:id - GET - gets one user
 /api/users/:id/pins - GET - gets all pins for a user
@@ -52,9 +53,9 @@ pins
 /api/pins/:id - PATCH - updates a pin  
 
 /api/pins/search (category and title)
-
+```
 # FRONTEND
-
+```
 /login
 /signup
 / - Shows numerous pins  
@@ -64,7 +65,7 @@ pins
 /pin/:pin_id
 /:user/search
 
-
+```
 
 
 
