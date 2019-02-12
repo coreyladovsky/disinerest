@@ -12,7 +12,8 @@ CREATE TABLE users (
   last_name VARCHAR,
   image_url VARCHAR,
   location VARCHAR,
-  gender VARCHAR
+  gender VARCHAR,
+  password_digest VARCHAR
 );
 
 CREATE TABLE boards (
