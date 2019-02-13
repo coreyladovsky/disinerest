@@ -2,6 +2,7 @@ const authHelpers = require("../auth/helpers");
 const passport = require("../auth/local");
 const { db } = require("./index.js");
 
+
 const registerUser = (req, res, next) => {
   const hash = authHelpers.createHashPassword(req.body.password);
   console.log('hash', hash, "body", req.body);
@@ -48,23 +49,23 @@ const getUser = (req, res, next) => {
       });
     });
 }
-
-
-const getSingleUser = (req, res, next) => {
-  db
-    .one("SELECT * FROM users WHERE email=${email}", {
-      email: req.params.email
-    })
-    .then(data => {
-      res.status(200).json({ user: data });
-    })
-    .catch(err => {
-      console.log(err);
-      res.status(500).json({
-        data: "Error",
-        err
-      });
-    });
-}
-
-module.exports = { registerUser, getSingleUser, getUser, logoutUser }
+//
+//
+// const getSingleUser = (req, res, next) => {
+//   db
+//     .one("SELECT * FROM users WHERE email=${email}", {
+//       email: req.params.email
+//     })
+//     .then(data => {
+//       res.status(200).json({ user: data });
+//     })
+//     .catch(err => {
+//       console.log(err);
+//       res.status(500).json({
+//         data: "Error",
+//         err
+//       });
+//     });
+// }
+//
+module.exports = { registerUser, getUser, logoutUser }

@@ -1,3 +1,9 @@
+var indexRouter = require('./routes/index');
+var authRouter = require('./routes/auth');
+var usersRouter = require('./routes/users');
+var boardsRouter = require('./routes/boards');
+var pinsRouter = require('./routes/pins');
+
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -7,10 +13,7 @@ const passport = require('passport');
 const session = require('express-session');
 
 var indexRouter = require('./routes/index');
-var authRouter = require('./routes/auth');
-var usersRouter = require('./routes/users');
-var boardsRouter = require('./routes/boards');
-var pinsRouter = require('./routes/pins');
+var usersRouter = require('./routes/index');
 
 var app = express();
 
@@ -25,14 +28,16 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(session({
-  secret: 'hacker',
+  secret: 'blorp',
   resave: false,
   saveUninitialized: true
 }));
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use('/', authRouter);
+
+app.use('/', indexRouter);
+app.use('/auth', authRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/boards', boardsRouter);
 app.use('/api/pins', pinsRouter);
