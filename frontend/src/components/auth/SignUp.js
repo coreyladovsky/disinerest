@@ -21,16 +21,18 @@ class SignUp extends React.Component {
       <div className="SignUp-Background">
         <div><img src={logo} alt="logo" /> </div>
           <h1>Sign up to see more</h1>
-          <div>
+          <div className="text">
           Access dinterest's best ideas with a free account
           </div>
-        <form onSubmit={this.handleSubmit}>
-          <input id="email" type="text" placeholder="Email" value={email} onChange={this.handleChange} />
-          <input id="password" type="password" placeholder="Create a password" value={password} onChange={this.handleChange}  />
-          <input id="age" type="text" placeholder="Age" value={age} onChange={this.handleChange}  />
-          <button type="submit">Sign Up</button>
-        </form>
-
+          <form onSubmit={this.handleSubmit}>
+            <input id="email" type="text" placeholder="Email" value={email} onChange={this.handleChange} />
+            <input id="password" type="password" placeholder="Create a password" value={password} onChange={this.handleChange}  />
+            <input id="age" type="text" placeholder="Age" value={age} onChange={this.handleChange}  />
+            <button type="submit">Sign Up</button>
+          </form>
+          <div className="already-a-member">
+              <Link to="/login" >Already a member? Log in</Link>
+          </div>
         </div>
       </div>
     );

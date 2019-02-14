@@ -1,15 +1,22 @@
 .SignUp-Background {
   width: 440px;
   margin: auto;
-  background: #FFFFFF;
+  background: #ffffff;
   border-radius: 7px;
   text-align: center;
-
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .SignUp {
   background: url(../assets/TranspFills/images/transpBlack50.png);
   min-height: 100%;
+  /* overflow: hidden; */
+  position: absolute;
+  top:0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
 .SignUp .Login {
@@ -25,5 +32,69 @@
 
 .SignUp .Login:hover {
   cursor: pointer;
-  background-color: #E2E2E2;
+  background-color: #e2e2e2;
+}
+
+.SignUp-Background form {
+  width: 285px;
+  margin: auto;
+}
+
+.SignUp input {
+  height: 40px;
+  width: 285px;
+  border: 1px solid #333333;
+  border-radius: 5px;
+  font-size: 15px;
+  padding-left: 10px;
+  margin-top: 12px;
+}
+
+.SignUp-Background img {
+  width: 65px;
+}
+
+.SignUp-Background h1 {
+  font-size: 30px;
+  font-weight: bold;
+  padding: 10px;
+  color: #333333;
+}
+
+.SignUp-Background .text {
+  width: 285px;
+  text-align: center;
+  margin: auto;
+  padding-bottom: 25px;
+  color: #333333;
+}
+
+.SignUp-Background button {
+  width: 285px;
+  height: 40px;
+  border-radius: 5px;
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  background-color: #E30B2B;
+  margin-top: 12px;
+  margin-bottom: 20px;
+}
+
+.SignUp-Background button:hover {
+  background: #BB0F23;
+  cursor: pointer;
+}
+
+.SignUp-Background .already-a-member a {
+  font-size: 12px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #9b9595;
+
+}
+
+.SignUp-Background .already-a-member a:hover {
+  color: #333333;
+  text-decoration: underline;
 }
