@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { getUser } from "./actions/session_actions";
 import { BrowserRouter, Route } from "react-router-dom";
 import SignUpContainer from './components/auth/SignUpContainer';
+import HomeContainer from './components/HomeContainer';
 
 class App extends Component {
   componentDidMount() {
@@ -13,6 +14,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="App">
+          <Route path="/signup" component={HomeContainer} />
           <Route path="/signup" component={SignUpContainer} />
         </div>
       </BrowserRouter>
