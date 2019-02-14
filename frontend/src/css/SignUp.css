@@ -1,0 +1,29 @@
+.SignUp-Background {
+  width: 440px;
+  margin: auto;
+  background: #FFFFFF;
+  border-radius: 7px;
+  text-align: center;
+
+}
+
+.SignUp {
+  background: url(../assets/TranspFills/images/transpBlack50.png);
+  min-height: 100%;
+}
+
+.SignUp .Login {
+  margin-top: 50px;
+  margin-left: 25px;
+  height: 40px;
+  width: 135px;
+  font-size: 15px;
+  font-weight: bolder;
+  border-radius: 5px;
+  font-family: sans-serif;
+}
+
+.SignUp .Login:hover {
+  cursor: pointer;
+  background-color: #E2E2E2;
+}
