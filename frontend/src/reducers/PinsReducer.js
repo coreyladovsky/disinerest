@@ -1,4 +1,4 @@
-import merge from "lodash/merge";
+// import merge from "lodash/merge";
 import { RECEIVE_PINS } from "../actions/pins_actions";
 
 const normalizeData = (pins) => {

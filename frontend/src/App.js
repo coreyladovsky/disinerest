@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { getUser } from "./actions/session_actions";
 import { BrowserRouter, Route } from "react-router-dom";
 import SignUpContainer from './components/auth/SignUpContainer';
+import LoginContainer from './components/auth/LoginContainer';
 import HomeContainer from './components/HomeContainer';
 
 class App extends Component {
@@ -14,8 +15,9 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="App">
-          <Route path="/signup" component={HomeContainer} />
+          <Route exact path={["/","/signup", "/login"]} component={HomeContainer} />
           <Route path="/signup" component={SignUpContainer} />
+          <Route path="/login" component={LoginContainer} />
         </div>
       </BrowserRouter>
     );
