@@ -24,9 +24,11 @@ export const clearErrors = () => ({
 export const getUser = () => dispatch => {
   return SessionApiUtil.getUser()
     .then(usr => {
+      Authenticate.authenticateUser(usr.data.user.email)
       return dispatch(receiveCurrentUser(usr.data.user));
     })
     .catch(err => {
+      Authenticate.deauthenticateUser()
       return dispatch(receiveErrors(err.response));
     });
 };
@@ -34,10 +36,13 @@ export const getUser = () => dispatch => {
 export const login = user => dispatch =>
   SessionApiUtil.login(user)
     .then(usr => {
+      Authenticate.authenticateUser(usr.data.email)
       return dispatch(receiveCurrentUser(usr.data));
     })
-    .catch(errors => dispatch(receiveErrors(errors.response)));
-
+    .catch(errors =>{
+        Authenticate.deauthenticateUser();
+       return dispatch(receiveErrors(errors.response))
+     });
 export const logout = () => dispatch =>
   SessionApiUtil.logout().then(() => {
     Authenticate.deauthenticateUser();

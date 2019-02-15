@@ -23,8 +23,17 @@ class Login extends React.Component {
         Authenticate.authenticateUser(this.state.email);
       }
     )
-
   }
+
+  demoLogin = () => {
+    this.props.login({email: "guestdemo@gmail.com", password: "guestdemo"})
+    .then(
+      () => {
+        Authenticate.authenticateUser("guestdemo@gmail.com");
+      }
+    )
+  }
+
   render() {
     let {email, password, age} = this.state;
     return (
@@ -40,6 +49,7 @@ class Login extends React.Component {
             <input id="email" type="text" placeholder="Email" value={email} onChange={this.handleChange} />
             <input id="password" type="password" placeholder="Create a password" value={password} onChange={this.handleChange}  />
             <button type="submit">Log in</button>
+            <button type="button" onClick={this.demoLogin}>Demo Log in</button>
           </form>
           <div className="already-a-member">
               <Link to="/signup" >Need an accout? Sign up now</Link>

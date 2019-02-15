@@ -3,7 +3,7 @@ import "./App.css";
 import { connect } from "react-redux";
 import { getUser, checkAuthenticateStatus } from "./actions/session_actions";
 import { BrowserRouter, Route } from "react-router-dom";
-import { AuthRoute, ProtectedRoute } from './util/route_util';
+import { HideAuthRoute, AuthRoute, ProtectedRoute } from './util/route_util';
 import SignUpContainer from './components/auth/SignUpContainer';
 import LoginContainer from './components/auth/LoginContainer';
 import HomeContainer from './components/HomeContainer';

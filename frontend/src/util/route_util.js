@@ -20,6 +20,15 @@ const Protected = ({ component: Component, path, loggedIn }) => (
     }
   />
 );
+const HideAuth = ({ component: Component, path, loggedIn }) => (
+  <Route
+    path={path}
+    render={props =>{
+    return  loggedIn ? <Component {...props} /> : null
+  }
+    }
+  />
+);
 
 const mapStateToProps = state => {
   return { loggedIn: Authenticate.isUserAuthenticated() };
@@ -36,4 +45,10 @@ export const ProtectedRoute = withRouter(
     mapStateToProps,
     null
   )(Protected)
+);
+export const HideAuthRoute = withRouter(
+  connect(
+    mapStateToProps,
+    null
+  )(HideAuth)
 );

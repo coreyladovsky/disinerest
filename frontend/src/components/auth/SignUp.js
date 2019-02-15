@@ -16,7 +16,7 @@ class SignUp extends React.Component {
     let registration = await this.props.signup(this.state)
     Authenticate.authenticateUser(email);
     let loggedIn = await this.props.login({email, password})
-    this.props.history.push('/pins')
+    this.props.history.push('/')
 
   }
   render() {
