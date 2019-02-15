@@ -7,16 +7,17 @@ const registerUser = (req, res, next) => {
   const hash = authHelpers.createHashPassword(req.body.password);
   console.log('hash', hash, "body", req.body);
   db
-    .none(
-      "INSERT INTO users (email, password_digest) VALUES (${email}, ${password_digest})",
+    .one(
+      "INSERT INTO users (email, password_digest) VALUES (${email}, ${password_digest}) RETURNING *",
       {
         email: req.body.email,
         password_digest: hash,
       }
     )
-    .then(() => {
+    .then((user) => {
       res.status(200).json({
-        message: "Registration successful."
+        message: "Registration successful.",
+        user: user
       });
     })
     .catch(err => {

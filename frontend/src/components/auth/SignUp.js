@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from 'react-router-dom';
 import logo from "../../assets/logo.png"
 import '../../css/SignUp.css';
+import Authenticate from '../../util/auth_util';
 class SignUp extends React.Component {
   state = { email: "", password: "", age: "" };
 
@@ -13,7 +14,8 @@ class SignUp extends React.Component {
     let { email, password } = this.state;
     e.preventDefault();
     let registration = await this.props.signup(this.state)
-    let loggedIn = this.props.login({email, password})
+    Authenticate.authenticateUser(email);
+    let loggedIn = await this.props.login({email, password})
     this.props.history.push('/pins')
 
   }

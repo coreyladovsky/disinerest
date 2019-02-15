@@ -4,7 +4,8 @@ import {
   login,
   signup,
   clearErrors,
-  getUser
+  getUser,
+  checkAuthenticateStatus
 } from "../../actions/session_actions";
 
 const mapStateToProps = (state) => {
@@ -18,7 +19,8 @@ const mapDispatchToProps = (dispatch) => {
     login: (user) => dispatch(login(user)),
     signup: (user) => dispatch(signup(user)),
     getUser: () => dispatch(getUser()),
-    clearError: () => dispatch(clearErrors())
+    clearError: () => dispatch(clearErrors()),
+    checkAuthenticateStatus: () => dispatch(checkAuthenticateStatus())
   }
 }
 

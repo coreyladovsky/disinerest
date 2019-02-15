@@ -1,17 +1,29 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 import logo from "../../assets/logo.png"
+import Authenticate from '../../util/auth_util';
+
 import '../../css/SignUp.css';
 class Login extends React.Component {
   state = { email: "", password: ""};
+
+  componentDidMount() {
+    this.props.checkAuthenticateStatus()
+  }
 
   handleChange = (e) => {
     this.setState({[e.target.id]: e.target.value});
   }
 
-  handleSubmit = (e) => {
+  handleSubmit = async (e) => {
     e.preventDefault();
-    this.props.signup(this.state)
+    this.props.login(this.state)
+    .then(
+      () => {
+        Authenticate.authenticateUser(this.state.email);
+      }
+    )
+
   }
   render() {
     let {email, password, age} = this.state;

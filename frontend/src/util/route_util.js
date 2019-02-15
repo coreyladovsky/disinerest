@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Route, Redirect, withRouter } from "react-router-dom";
+import Authenticate from './auth_util';
 
 const Auth = ({ component: Component, path, loggedIn }) => (
   <Route
@@ -13,14 +14,15 @@ const Auth = ({ component: Component, path, loggedIn }) => (
 const Protected = ({ component: Component, path, loggedIn }) => (
   <Route
     path={path}
-    render={props =>
-      loggedIn ? <Component {...props} /> : <Redirect to="/login" />
+    render={props =>{
+    return  loggedIn ? <Component {...props} /> : <Redirect to="/login" />
+  }
     }
   />
 );
 
 const mapStateToProps = state => {
-  return { loggedIn: Boolean(state.session.currentUser) };
+  return { loggedIn: Authenticate.isUserAuthenticated() };
 };
 
 export const AuthRoute = withRouter(
