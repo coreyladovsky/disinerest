@@ -12,3 +12,12 @@ export const fetchAllPins = () => dispatch =>
   PinsApiUtil.fetchAllPins().then(pins => {
     return dispatch(receivePins(pins.data.pins));
   }).catch(err => dispatch(receiveErrors(err.response)) );
+
+export const fetchQueryPins = () => dispatch => {
+  return PinsApiUtil.fetchQueryPins().then(pins => {
+    return dispatch(receivePins(pins.data.pins));
+  }).catch(err => {
+      return dispatch(receiveErrors(err.response))
+  });
+
+}

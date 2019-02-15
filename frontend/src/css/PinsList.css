@@ -1,6 +1,6 @@
 .PinsList {
   display: flex;
   flex-wrap: wrap;
-  margin: 20px;
-  magin: auto;
+  margin-top: 20px;
+  justify-content: center;
 }

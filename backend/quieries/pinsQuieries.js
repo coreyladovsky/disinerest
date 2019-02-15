@@ -108,5 +108,5 @@ module.exports = {
   getPin,
   deletePin,
   updatePin,
-  filterPins
+  filterPins,
 };

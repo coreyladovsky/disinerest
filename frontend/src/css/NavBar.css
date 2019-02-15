@@ -1,0 +1,13 @@
+.NavBar {
+  display: flex;
+  background: green;
+  height: 65px;
+}
+
+.NavBar .leftNav {
+  display: flex;
+}
+
+.NavBar .leftNav img {
+  width: 50px;
+}

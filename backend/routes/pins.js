@@ -6,7 +6,7 @@ const {
   getPin,
   deletePin,
   updatePin,
-  filterPins
+  filterPins,
 } = require("../quieries/pinsQuieries");
 
 router.post("/", createPin);
