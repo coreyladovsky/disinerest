@@ -9,9 +9,13 @@ class SignUp extends React.Component {
     this.setState({[e.target.id]: e.target.value});
   }
 
-  handleSubmit = (e) => {
+  handleSubmit = async (e) => {
+    let { email, password } = this.state;
     e.preventDefault();
-    this.props.signup(this.state)
+    let registration = await this.props.signup(this.state)
+    let loggedIn = this.props.login({email, password})
+    this.props.history.push('/pins')
+
   }
   render() {
     let {email, password, age} = this.state;
