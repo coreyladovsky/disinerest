@@ -1,5 +1,6 @@
 import React from "react";
 import mag from "../../../assets/mag.png";
+import { withRouter } from 'react-router-dom'
 
 class SearchForm extends React.Component {
   state = { query: "" };
@@ -11,6 +12,8 @@ class SearchForm extends React.Component {
   handleSubmit(e){
     e.preventDefault();
     this.props.fetchQueryPins(this.state);
+    this.setState({query: ""})
+    this.props.history.push("/")
   };
   render() {
     return (
@@ -28,4 +31,4 @@ class SearchForm extends React.Component {
   }
 }
 
-export default SearchForm;
+export default withRouter(SearchForm);

@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 import SearchForm from "./SearchForm";
 import { fetchQueryPins } from "../../../actions/pins_actions";
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     fetchQueryPins: query => dispatch(fetchQueryPins(query))
   };

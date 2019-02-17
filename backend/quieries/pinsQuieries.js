@@ -89,9 +89,10 @@ const updatePin = (req, res, next) => {
 
 const filterPins = (req, res, next) => {
   let query = req.body.query.toLowerCase();
+  console.log("QUERY: ",req.body.query);
   db
     .any(
-      "SELECT * FROM pins WHERE lower(title) LIKE '%" + query + "%' OR lower(description) LIKE '%" + query + "%'"
+      `SELECT * FROM pins WHERE lower(title) LIKE '%${query}%' OR lower(description) LIKE '%${query}%'`
     ).then(pins => {
       res.status(200).json({
         status: "success",

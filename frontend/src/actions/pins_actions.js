@@ -13,8 +13,8 @@ export const fetchAllPins = () => dispatch =>
     return dispatch(receivePins(pins.data.pins));
   }).catch(err => dispatch(receiveErrors(err.response)) );
 
-export const fetchQueryPins = () => dispatch => {
-  return PinsApiUtil.fetchQueryPins().then(pins => {
+export const fetchQueryPins = (query) => dispatch => {
+  return PinsApiUtil.fetchQueryPins(query).then(pins => {
     return dispatch(receivePins(pins.data.pins));
   }).catch(err => {
       return dispatch(receiveErrors(err.response))
