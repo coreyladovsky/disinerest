@@ -1,6 +1,7 @@
 import React from "react";
-import mag from "../../../assets/mag.png";
+// import mag from "../../../assets/mag.png";
 import { withRouter } from 'react-router-dom'
+import '../../../css/SearchForm.css'
 
 class SearchForm extends React.Component {
   state = { query: "" };
@@ -17,13 +18,14 @@ class SearchForm extends React.Component {
   };
   render() {
     return (
-      <form onSubmit={this.handleSubmit.bind(this)}>
+      <form onSubmit={this.handleSubmit.bind(this)} className="SearchForm">
         <div>
-          <img src={mag} alt="mag" />
+          <i className="fa fa-search" ></i>
           <input
             type="text"
             onChange={this.handleChange}
             value={this.state.query}
+            placeholder="Search"
           />
         </div>
       </form>

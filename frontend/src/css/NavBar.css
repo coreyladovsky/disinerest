@@ -1,7 +1,9 @@
 .NavBar {
   display: flex;
-  background: green;
   height: 65px;
+  border-bottom: 1px solid #EFEFEF;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .NavBar .leftNav {
@@ -10,4 +12,33 @@
 
 .NavBar .leftNav img {
   width: 50px;
+  padding-top: 15px;
+  padding-left: 15px;
+}
+
+.NavBar .tool-bar {
+  display: flex;
+}
+
+
+.NavBar .tool-bar .profilePic {
+  height: 25px;
+  width: 25px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+
+.NavBar .tool-bar .dots {
+  color: black;
+  height: 25px;
+  width: 25px;
+}
+
+.menu-hide {
+  display: none;
+}
+
+.menu-show {
+  display: block;
 }

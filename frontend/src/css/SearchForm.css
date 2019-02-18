@@ -1,0 +1,13 @@
+.SearchForm {
+  color: #8E8E8E;
+}
+
+.SearchForm input {
+  width: 600px;
+  height: 40px;
+  background: #EFEFEF;
+  border-radius: 0px 5px 5px 0px;
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+}
