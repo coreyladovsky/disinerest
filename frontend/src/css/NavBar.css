@@ -1,44 +1,93 @@
 .NavBar {
-  display: flex;
+  display: grid;
+  grid-template-columns: 7fr 4fr;
   height: 65px;
-  border-bottom: 1px solid #EFEFEF;
+  border-bottom: 1px solid #efefef;
   justify-content: space-between;
   align-items: center;
+  position: fixed;
+  top: 0px;
+  background: white;
+}
+
+.NavBar .tool-bar .active {
+  color: black;
 }
 
 .NavBar .leftNav {
   display: flex;
+  align-items: center;
 }
 
 .NavBar .leftNav img {
   width: 50px;
   padding-top: 15px;
   padding-left: 15px;
+  padding-right: 15px;
 }
 
 .NavBar .tool-bar {
   display: flex;
+  justify-content: space-around;
 }
 
+.NavBar .tool-bar a {
+  font-weight: bold;
+  padding: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 20px;
+  text-decoration: none;
+  color: #8e8e8e;
+}
+
+.NavBar .tool-bar a:hover {
+  background: #EFEFEF;
+}
 
 .NavBar .tool-bar .profilePic {
   height: 25px;
   width: 25px;
   object-fit: cover;
-  border-radius: 50%;
+  border-radius: 20px;
 }
 
-
-.NavBar .tool-bar .dots {
-  color: black;
-  height: 25px;
-  width: 25px;
+.NavBar .tool-bar li {
+  display: flex;
+  align-items: center;
 }
 
+.userLink {
+  display: flex;
+  align-items: center;
+}
+
+.userLink img{
+  margin-right: 10px;
+}
 .menu-hide {
   display: none;
 }
 
 .menu-show {
   display: block;
+  width: 285px;
+  top: 68px;
+  right: 20px;
+  border: 1px solid #efefef;
+  background: white;
+  position: fixed;
+}
+
+.menu-toggle .fa-ellipsis-h {
+  font-weight: bold;
+  font-size: 25px;
+  padding: 12px;
+  border-radius: 50%;
+  text-decoration: none;
+  color: #8e8e8e;
+}
+
+.menu-toggle .fa-ellipsis-h:hover {
+  background: #EFEFEF;
 }

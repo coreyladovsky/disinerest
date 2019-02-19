@@ -4,10 +4,36 @@
 
 .SearchForm input {
   width: 600px;
-  height: 40px;
+  height: 36px;
   background: #EFEFEF;
   border-radius: 0px 5px 5px 0px;
   border: none;
   font-size: 16px;
   font-weight: bold;
+  color: black;
+}
+
+.SearchForm input:focus {
+  outline: none;
+}
+
+.SearchForm div {
+  background: #EFEFEF;
+  height: 40px;
+  border-radius: 5px 5px 5px 5px;
+}
+
+.SearchForm  i {
+  padding-left: 15px;
+  font-size: 20px;
+  padding-right: 12px;
+  font-weight: bold;
+}
+
+.noOutline {
+  border: 4px solid white;
+}
+
+.outline {
+  border: 4px solid lightskyblue;
 }

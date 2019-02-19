@@ -1,25 +1,35 @@
 import React from "react";
 import logo from "../../assets/logo.png";
-import dots from "../../assets/threeDots.png";
-import { Link } from "react-router-dom";
-import SearchFormContainer from './Search/SearchFormContainer';
-import '../../css/NavBar.css'
+// import dots from "../../assets/threeDots.png";
+import { NavLink, Link } from "react-router-dom";
+import SearchFormContainer from "./Search/SearchFormContainer";
+import "../../css/NavBar.css";
 
 class NavBar extends React.Component {
-  state = {menu: false }
+  state = { menu: false };
 
   componentDidMount() {
-    document.addEventListener("click", () => {
-      this.setState({menu: false })
-    })
+    document.addEventListener("click", this.toggleMenu, false);
   }
 
-  toggleMenu = (e) => {
-      this.setState({menu: !this.state.menu})
+  componentWillUnmount() {
+    document.removeEventListener("click", this.toggleMenu, false);
   }
+
+  toggleMenu = e => {
+    e.stopPropagation();
+    if (
+      e.target.className === "menu-toggle" ||
+      e.target.className === "fa fa-ellipsis-h"
+    ) {
+      this.setState({ menu: !this.state.menu });
+    } else {
+      this.setState({ menu: false });
+    }
+  };
 
   render() {
-    if(!this.props.currentUser) return null;
+    if (!this.props.currentUser) return null;
     return (
       <nav className={"NavBar"}>
         <div className="leftNav">
@@ -28,21 +38,34 @@ class NavBar extends React.Component {
           </Link>
           <SearchFormContainer />
         </div>
-        <div className="rightNav" >
-          <div className="logout-dots">
-
-          </div>
+        <div className="rightNav">
           <ul className="tool-bar">
-            <li><Link to={"/"}>Home</Link></li>
-            <li >
-              <img src={this.props.currentUser.image_url ? this.props.currentUser.image_url : "https://s3.amazonaws.com/helpcoreyladovskyprojectpro/users/images/000/000/087/original/default.jpg?1511850130" } alt="profile pic" className="profilePic"/>
-              {this.props.currentUser.email.split("@")[0]}
+            <li>
+              <NavLink exact to={"/"}>
+                Home
+              </NavLink>
             </li>
-            <li onClick={this.toggleMenu}>
-              <img src={dots} alt="dots" className="dots" />
+            <li>
+              <NavLink to={"/" + this.props.currentUser.id} className="userLink">
+                <div>
+                  <img
+                    src={
+                      this.props.currentUser.image_url
+                        ? this.props.currentUser.image_url
+                        : "https://s3.amazonaws.com/helpcoreyladovskyprojectpro/users/images/000/000/087/original/default.jpg?1511850130"
+                    }
+                    alt="profile pic"
+                    className="profilePic"
+                  />
+                </div>
+                <div>{this.props.currentUser.email.split("@")[0]}</div>
+              </NavLink>
             </li>
-            <li onClick={() => this.props.logout()} className={this.state.menu ? "menu-show" : "menu-hide"}>
-              Log out
+            <li className="menu-toggle">
+              <i className="fa fa-ellipsis-h" aria-hidden="true" />
+              <ul className={this.state.menu ? "menu-show" : "menu-hide"}>
+                <li onClick={() => this.props.logout()}>Log out</li>
+              </ul>
             </li>
           </ul>
         </div>
