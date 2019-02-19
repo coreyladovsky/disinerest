@@ -64,6 +64,8 @@ class NavBar extends React.Component {
             <li className="menu-toggle">
               <i className="fa fa-ellipsis-h" aria-hidden="true" />
               <ul className={this.state.menu ? "menu-show" : "menu-hide"}>
+                <div className="triangle-border"></div>
+                  <div className="triangle"></div>
                 <li onClick={() => this.props.logout()}>Log out</li>
               </ul>
             </li>
