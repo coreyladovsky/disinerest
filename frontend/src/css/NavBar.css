@@ -8,6 +8,23 @@
   position: fixed;
   top: 0px;
   background: white;
+  width: 100%;
+}
+
+.NavBar a:focus {
+  border: 4px solid lightskyblue;
+  outline: none;
+}
+ .NavBar a {
+   border: 4px solid white;
+}
+/* .NavBar li:focus {
+  border: 4px solid white;
+}  */
+
+.NavBar .logo-link {
+  height: 30px;
+  border-radius: 50%;
 }
 
 .NavBar .tool-bar .active {
@@ -16,14 +33,14 @@
 
 .NavBar .leftNav {
   display: flex;
-  align-items: center;
+  /* align-items: center; */
 }
 
 .NavBar .leftNav img {
-  width: 50px;
-  padding-top: 15px;
-  padding-left: 15px;
-  padding-right: 15px;
+  width: 30px;
+  /* padding-top: 15px; */
+  /* padding-left: 15px;
+  padding-right: 15px; */
 }
 
 .NavBar .tool-bar {
@@ -98,7 +115,7 @@
   border-right: 9px solid transparent;
   border-bottom: 9px solid white;
   position: fixed;
-  right: 54px;
+  right: 42px;
   top: 61px;
 }
 
@@ -109,7 +126,7 @@
   border-right: 10px solid transparent;
   border-bottom: 10px solid #EFEFEF;
   position: fixed;
-  right: 53px;
+  right: 41px;
   top: 60px;
 }
 
@@ -120,6 +137,10 @@
   border-radius: 50%;
   text-decoration: none;
   color: #8e8e8e;
+}
+
+.dots-tag {
+  border-radius: 50%;
 }
 
 .menu-toggle .fa-ellipsis-h:hover {

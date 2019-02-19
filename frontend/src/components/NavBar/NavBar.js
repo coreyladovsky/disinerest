@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../../assets/logo.png";
+import logo from "../../assets/dis-logo.png";
 // import dots from "../../assets/threeDots.png";
 import { NavLink, Link } from "react-router-dom";
 import SearchFormContainer from "./Search/SearchFormContainer";
@@ -33,7 +33,7 @@ class NavBar extends React.Component {
     return (
       <nav className={"NavBar"}>
         <div className="leftNav">
-          <Link to={"/"}>
+          <Link to={"/"} className="logo-link">
             <img src={logo} alt="logo" />
           </Link>
           <SearchFormContainer />
@@ -46,7 +46,10 @@ class NavBar extends React.Component {
               </NavLink>
             </li>
             <li>
-              <NavLink to={"/" + this.props.currentUser.id} className="userLink">
+              <NavLink
+                to={"/" + this.props.currentUser.id}
+                className="userLink"
+              >
                 <div>
                   <img
                     src={
@@ -62,10 +65,12 @@ class NavBar extends React.Component {
               </NavLink>
             </li>
             <li className="menu-toggle">
-              <i className="fa fa-ellipsis-h" aria-hidden="true" />
+              <a href="#" onclick="return false;" className="dots-tag">
+                <i className="fa fa-ellipsis-h" aria-hidden="true" />
+            </a>
               <ul className={this.state.menu ? "menu-show" : "menu-hide"}>
-                <div className="triangle-border"></div>
-                  <div className="triangle"></div>
+                <div className="triangle-border" />
+                <div className="triangle" />
                 <li onClick={() => this.props.logout()}>Log out</li>
               </ul>
             </li>
