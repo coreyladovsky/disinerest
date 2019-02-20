@@ -5,13 +5,16 @@ const { db } = require("./index.js");
 
 const registerUser = (req, res, next) => {
   const hash = authHelpers.createHashPassword(req.body.password);
-  console.log('hash', hash, "body", req.body);
+  if(req.body.age === "") {
+    req.body.age = null;
+  }
   db
     .one(
-      "INSERT INTO users (email, password_digest) VALUES (${email}, ${password_digest}) RETURNING *",
+      "INSERT INTO users (email, password_digest, age) VALUES (${email}, ${password_digest}, ${age}) RETURNING *",
       {
         email: req.body.email,
         password_digest: hash,
+        age: req.body.age
       }
     )
     .then((user) => {

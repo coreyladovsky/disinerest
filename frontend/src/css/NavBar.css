@@ -1,7 +1,7 @@
 .NavBar {
   display: grid;
   grid-template-columns: 7fr 4fr;
-  height: 65px;
+  /* max-height: 69px; */
   border-bottom: 1px solid #efefef;
   justify-content: space-between;
   align-items: center;
@@ -9,14 +9,15 @@
   top: 0px;
   background: white;
   width: 100%;
+  overflow: hidden;
 }
 
 .NavBar a:focus {
   border: 4px solid lightskyblue;
   outline: none;
 }
- .NavBar a {
-   border: 4px solid white;
+.NavBar a {
+  border: 4px solid white;
 }
 /* .NavBar li:focus {
   border: 4px solid white;
@@ -25,6 +26,9 @@
 .NavBar .logo-link {
   height: 30px;
   border-radius: 50%;
+  width: 30px;
+  margin-right: 20px;
+  margin-left: 20px;
 }
 
 .NavBar .tool-bar .active {
@@ -34,13 +38,14 @@
 .NavBar .leftNav {
   display: flex;
   /* align-items: center; */
+  align-items: center;
+  height: 65px;
+  /* padding-bottom: 10px; */
 }
 
 .NavBar .leftNav img {
   width: 30px;
-  /* padding-top: 15px; */
-  /* padding-left: 15px;
-  padding-right: 15px; */
+  margin-right: 15px;
 }
 
 .NavBar .tool-bar {
@@ -50,7 +55,7 @@
 
 .NavBar .tool-bar a {
   font-weight: bold;
-  padding: 10px;
+  padding: 7px;
   padding-left: 15px;
   padding-right: 15px;
   border-radius: 20px;
@@ -59,7 +64,7 @@
 }
 
 .NavBar .tool-bar a:hover {
-  background: #EFEFEF;
+  background: #efefef;
 }
 
 .NavBar .tool-bar .profilePic {
@@ -79,7 +84,13 @@
   align-items: center;
 }
 
-.userLink img{
+.NavBar .tool-bar .userLink {
+  padding: 4px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.userLink img {
   margin-right: 10px;
 }
 .menu-hide {
@@ -105,7 +116,7 @@
 }
 
 .menu-show li:hover {
-  background: #EFEFEF;
+  background: #efefef;
 }
 
 .menu-show .triangle {
@@ -124,7 +135,7 @@
   height: 0px;
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
-  border-bottom: 10px solid #EFEFEF;
+  border-bottom: 10px solid #efefef;
   position: fixed;
   right: 41px;
   top: 60px;
@@ -133,16 +144,19 @@
 .menu-toggle .fa-ellipsis-h {
   font-weight: bold;
   font-size: 25px;
-  padding: 12px;
+  padding: 8px;
   border-radius: 50%;
   text-decoration: none;
   color: #8e8e8e;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
-.dots-tag {
+.NavBar .tool-bar .dots-tag {
+  padding: 0px;
   border-radius: 50%;
 }
 
 .menu-toggle .fa-ellipsis-h:hover {
-  background: #EFEFEF;
+  background: #efefef;
 }
