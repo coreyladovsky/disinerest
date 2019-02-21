@@ -1,5 +1,5 @@
 import React from 'react';
-import { PinsListItem } from './PinsListItem';
+import PinsListItem  from './PinsListItem';
 import '../../css/PinsList.css'
 
 export const PinsList = ({pins}) => {

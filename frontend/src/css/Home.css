@@ -3,6 +3,7 @@
 }
 
 .modal {
+  padding-top: 0px;
   position: fixed;
   overflow: hidden;
 }

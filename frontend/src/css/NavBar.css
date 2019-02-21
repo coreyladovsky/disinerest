@@ -10,6 +10,7 @@
   background: white;
   width: 100%;
   overflow: hidden;
+  z-index: 2;
 }
 
 .NavBar a:focus {

@@ -1,14 +1,45 @@
 .PinsListItem {
-  width: 235px;
   border-radius: 5px;
-  margin: 5px;
+  margin: 7px;
+  max-height: 350px;
 }
 
+.PinsListItem:hover {
+  cursor: zoom-in;
+}
+
+.PinListContainer {
+  position: relative;
+  display: flex;
+  width: 216px;
+  margin: 7px;
+  background: (255, 255, 255, 0.1);
+  align-items: center;
+}
 
 .PinsListItem img {
-  width: 235px;
+  width: 100%;
   border-radius: 5px;
-  margin: 5px;
+  margin: 7px;
   min-height: 350px;
   object-fit: cover;
+}
+
+.pinCover {
+  background: url(../assets/TranspFills/images/transpBlack10.png);
+  width: 100%;
+  border-radius: 5px;
+  margin: 7px;
+  min-height: 100%;
+  top: 0;
+  position: absolute;
+  left: 0;
+}
+
+.hidePinCover {
+  display: none;
+}
+
+.pinCover:hover {
+  cursor: zoom-in;
 }
