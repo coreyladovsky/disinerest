@@ -2,10 +2,21 @@ import React from "react";
 import "../../css/PinsListItem.css";
 
 class PinsListItem extends React.Component {
-  state = { hoverPhotos: true };
+  state = { hoverPhotos: false };
 
   toggleHover = e => {
-    // this.setState({ hoverPhotos: !this.state.hoverPhotos });
+    this.setState({ hoverPhotos: !this.state.hoverPhotos });
+  };
+
+  mouseOut = event => {
+    let e = event.toElement || event.relatedTarget;
+    if(!e) { return}
+    debugger
+    if (e.parentNode.className == "pinCover" || e.className == "pinCover" || e.className.includes("dontChange")) {
+      return
+    } else {
+      this.toggleHover();
+    }
   };
 
   render() {
@@ -17,17 +28,16 @@ class PinsListItem extends React.Component {
         </li>
         <div
           className={this.state.hoverPhotos ? "pinCover" : "hidePinCover"}
-          onMouseOut={this.toggleHover}
+          onMouseOut={this.mouseOut}
         >
           <button className="show-pinCreate-modal">
             {" "}
-            <i class="fa fa-thumb-tack" aria-hidden="true"></i> Save
+            <i class="fa fa-thumb-tack dontChange" aria-hidden="true" /> Save
           </button>
           <a href={pin.link_url} target="_blank" className="pink-link">
-            <i className="fa fa-arrow-up" aria-hidden="true" />
+            <i className="fa fa-arrow-up dontChange" aria-hidden="true" />
             {pin.link_url}
           </a>
-          ;
         </div>
       </div>
     );
