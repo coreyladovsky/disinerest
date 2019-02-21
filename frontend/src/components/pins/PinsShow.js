@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import '../../css/PinsShow.css';
 
 class PinsShow extends React.Component {
@@ -18,13 +19,14 @@ class PinsShow extends React.Component {
   render () {
     let { pin, currentUser } = this.props;
     if(!pin) return null;
+    if(!currentUser) return null;
     return (
       <div className="PinsShow">
         <div className="PinsDisplayBox">
           <div className="image-holder"  >
             <div className="pinControl">
               <div>
-          {pin.user_id === currentUser.id ? <i class="fa fa-pencil" aria-hidden="true"></i> : null}
+          {pin.user_id === currentUser.id ? <Link to={"/pins/" + pin.id + "/edit"}> <div className="PinsShowEditButton"><i class="fa fa-pencil" aria-hidden="true"></i></div></Link> : null}
               </div>
               <button className="show-pinCreate-modal" onClick={this.showPinSaverModal}>
                 {" "}
