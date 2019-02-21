@@ -43,3 +43,48 @@
 .pinCover:hover {
   cursor: zoom-in;
 }
+
+.pinCover .show-pinCreate-modal {
+  width: 80px;
+  height: 40px;
+  border-radius: 5px;
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  background-color: #e30b2b;
+  margin-top: 15px;
+  right: 15px;
+  position: absolute;
+  border: 1px solid #e30b2b;
+}
+.pinCover .show-pinCreate-modal:hover {
+  background: #bb0f23;
+  border: 1px solid #bb0f23;
+
+  cursor: pointer;
+}
+.pinCover .pink-link {
+  color: white;
+  text-decoration: none;
+  width: 80%;
+  overflow: hidden;
+  background: url(../assets/TranspFills/images/transpBlack50.png);
+  display: block;
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+  padding: 10px;
+  max-width: 61%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  border-radius: 30px;
+}
+
+.pinCover .pink-link .fa-arrow-up {
+  padding-right: 5px;
+  transform: rotate(45deg);
+}
+
+.pinCover .pink-link:hover {
+  background: url(../assets/TranspFills/images/transpBlack75.png);
+}

@@ -161,3 +161,7 @@
 .menu-toggle .fa-ellipsis-h:hover {
   background: #efefef;
 }
+
+.menu-toggle li:hover {
+  cursor: pointer;
+}

@@ -12,7 +12,6 @@ import PinsShow from './components/pins/PinsShow';
 
 class App extends Component {
   componentDidMount() {
-    // this.props.getUser();
     this.props.checkAuthenticateStatus();
   }
   render() {

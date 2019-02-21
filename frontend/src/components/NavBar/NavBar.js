@@ -10,10 +10,12 @@ class NavBar extends React.Component {
 
   componentDidMount() {
     document.addEventListener("click", this.toggleMenu, false);
+    document.addEventListener("submit", this.toggleMenu, false);
   }
 
   componentWillUnmount() {
     document.removeEventListener("click", this.toggleMenu, false);
+    document.removeEventListener("submit", this.toggleMenu, false);
   }
 
   toggleMenu = e => {
@@ -21,7 +23,8 @@ class NavBar extends React.Component {
     e.stopPropagation();
     if (
       e.target.className === "menu-toggle" ||
-      e.target.className === "fa fa-ellipsis-h"
+      e.target.className === "fa fa-ellipsis-h" ||
+        e.target.className === "dots-tag"
     ) {
       this.setState({ menu: !this.state.menu });
     } else {
