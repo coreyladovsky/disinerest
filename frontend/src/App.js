@@ -8,7 +8,7 @@ import SignUpContainer from './components/auth/SignUpContainer';
 import LoginContainer from './components/auth/LoginContainer';
 import HomeContainer from './components/HomeContainer';
 import NavBarContainer from './components/NavBar/NavBarContainer';
-import PinsShow from './components/pins/PinsShow';
+import PinsShowContainer from './components/pins/PinsShowContainer';
 
 class App extends Component {
   componentDidMount() {
@@ -22,7 +22,7 @@ class App extends Component {
           <Route exact path={["/","/signup", "/login"]} component={HomeContainer} />
           <AuthRoute path="/signup" component={SignUpContainer} />
           <AuthRoute path="/login" component={LoginContainer} />
-          <ProtectedRoute path="/pins" component={PinsShow} />
+        <ProtectedRoute path="/pins/:id" component={PinsShowContainer} />
         </div>
       </BrowserRouter>
     );

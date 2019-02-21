@@ -4,9 +4,9 @@ import '../css/Home.css';
 
 class Home extends React.Component {
   componentDidMount(){
-    if(!this.props.pins.length) {
+    // if(this.props.pins.length <= 1) {
       this.props.fetchAllPins();
-    }
+    // }
   }
   render () {
     let modal

@@ -1,0 +1,81 @@
+.PinsShow {
+  padding-top: 75px;
+  background: #efefef;
+  padding-bottom: 30px;
+}
+
+.PinsShow .PinsDisplayBox {
+}
+
+.PinsShow .PinsDisplayBox .image-holder {
+  width: 620px;
+  margin: auto;
+  background: white;
+  width: 620px;
+  margin: auto;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* padding-top: 45px; */
+  border-radius: 8px;
+  padding-bottom: 45px;
+  margin-top: 25px;
+  position: relative;
+}
+
+.PinsShow .PinsDisplayBox .image-holder img {
+  width: 565px;
+}
+
+.whiteImageCover {
+  width: 565px;
+  background: url(../assets/TranspFills/images/white15.png);
+  position: absolute;
+  height: 85%;
+  margin-top: 55px;
+}
+
+.whiteImageCover:hover {
+  cursor: pointer;
+}
+
+.whiteImageCoverHide {
+  display: none;
+}
+
+.pinControl .show-pinCreate-modal {
+  width: 80px;
+  height: 40px;
+  border-radius: 5px;
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  background-color: #e30b2b;
+  /* margin-top: 15px;
+  right: 15px; */
+  /* position: absolute; */
+  margin-right: 25px;
+  border: 1px solid #e30b2b;
+}
+
+.pinControl {
+  height: 75px;
+  background: white;
+  width: 620px;
+  position: sticky;
+  top: 65px;
+  border-radius: 8px 8px 0 0;
+  z-index: 1;
+  margin-bottom: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pinControl .show-pinCreate-modal:hover {
+  background: #bb0f23;
+  border: 1px solid #bb0f23;
+  cursor: pointer;
+}

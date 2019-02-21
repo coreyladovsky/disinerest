@@ -1,5 +1,7 @@
-import axios from 'axios';
+import axios from "axios";
 
-export const fetchAllPins = () => axios.get('/api/pins')
+export const fetchAllPins = () => axios.get("/api/pins");
 
-export const fetchQueryPins = (query) => axios.post('/api/pins/search', query)
+export const fetchPin = pinId => axios.get("/api/pins/" + pinId);
+
+export const fetchQueryPins = query => axios.post("/api/pins/search", query);
