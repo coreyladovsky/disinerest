@@ -17,6 +17,7 @@ class NavBar extends React.Component {
   }
 
   toggleMenu = e => {
+    document.querySelectorAll("a").forEach(tag => tag.blur())
     e.stopPropagation();
     if (
       e.target.className === "menu-toggle" ||
@@ -65,9 +66,9 @@ class NavBar extends React.Component {
               </NavLink>
             </li>
             <li className="menu-toggle">
-              <a href="#" onclick="return false;" className="dots-tag">
+              <Link to={this.props.location.pathname} className="dots-tag" >
                 <i className="fa fa-ellipsis-h" aria-hidden="true" />
-            </a>
+            </Link>
               <ul className={this.state.menu ? "menu-show" : "menu-hide"}>
                 <div className="triangle-border" />
                 <div className="triangle" />
