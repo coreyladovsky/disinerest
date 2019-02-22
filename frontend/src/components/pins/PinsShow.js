@@ -22,11 +22,12 @@ class PinsShow extends React.Component {
     if(!currentUser) return null;
     return (
       <div className="PinsShow">
+        <button className="show-back-button"><i class="fa fa-chevron-left" aria-hidden="true"></i>Back</button>
         <div className="PinsDisplayBox">
           <div className="image-holder"  >
             <div className="pinControl">
-      
-          {pin.user_id === currentUser.id ? <Link to={"/pins/" + pin.id + "/edit"}> <div className="PinsShowEditButton"><i class="fa fa-pencil" aria-hidden="true"></i></div></Link> : null}
+
+          {pin.user_id === currentUser.id ? <Link to={"/pins/" + pin.id + "/edit"}> <div className="PinsShowEditButton"><i class="fa fa-pencil" aria-hidden="true"></i></div></Link> : <div></div>}
 
               <button className="show-pinCreate-modal" onClick={this.showPinSaverModal}>
                 {" "}

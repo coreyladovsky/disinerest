@@ -31,7 +31,7 @@ const getPins = (req, res, next) => {
 
 const getPin = (req, res, next) => {
   db
-    .one("SELECT * FROM pins WHERE id = " + Number(req.params.id))
+    .one("SELECT pins.*, users.email as owner_email, users.image_url as owner_image FROM pins JOIN users ON users.id = pins.user_id WHERE pins.id = " + Number(req.params.id))
     .then(pin => {
       res.status(200).json({
         pin,
