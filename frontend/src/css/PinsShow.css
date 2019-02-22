@@ -18,7 +18,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* padding-top: 45px; */
   border-radius: 8px;
   padding-bottom: 45px;
   margin-top: 25px;
@@ -46,18 +45,15 @@
 }
 
 .pinControl .show-pinCreate-modal {
-  width: 80px;
-  height: 40px;
-  border-radius: 5px;
+  width: 81px;
+  height: 41px;
   color: white;
   font-size: 15px;
   font-weight: bold;
   background-color: #e30b2b;
-  /* margin-top: 15px;
-  right: 15px; */
-  /* position: absolute; */
   margin-right: 25px;
-  border: 1px solid #e30b2b;
+  border: 4px solid white;
+  border-radius: 9px;
 }
 
 .pinControl {
@@ -76,8 +72,15 @@
 
 .pinControl .show-pinCreate-modal:hover {
   background: #bb0f23;
-  border: 1px solid #bb0f23;
+  /* border: 1px solid #bb0f23; */
   cursor: pointer;
+}
+
+.pinControl .show-pinCreate-modal:focus {
+  outline: none;
+   /* box-shadow: 4px lightskyblue; */
+  border: 4px solid lightskyblue;
+
 }
 
 .pinControl a:focus {
