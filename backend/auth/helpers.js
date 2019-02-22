@@ -1,4 +1,4 @@
-let { db } = require("../quieries/index.js");
+// let { db } = require("../quieries/index.js");
 const bcrypt = require("bcryptjs");
 
 

@@ -25,9 +25,9 @@ class PinsShow extends React.Component {
         <div className="PinsDisplayBox">
           <div className="image-holder"  >
             <div className="pinControl">
-              <div>
+      
           {pin.user_id === currentUser.id ? <Link to={"/pins/" + pin.id + "/edit"}> <div className="PinsShowEditButton"><i class="fa fa-pencil" aria-hidden="true"></i></div></Link> : null}
-              </div>
+
               <button className="show-pinCreate-modal" onClick={this.showPinSaverModal}>
                 {" "}
                 <i class="fa fa-thumb-tack dontChange" aria-hidden="true" /> Save
