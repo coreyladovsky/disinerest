@@ -3,12 +3,12 @@ import "../../css/PinsListItem.css";
 import { Link, withRouter } from 'react-router-dom';
 
 class PinsListItem extends React.Component {
-  state = { hoverPhotos: false };
-
-  toggleHover = e => {
-    this.setState({ hoverPhotos: !this.state.hoverPhotos });
-  };
-
+  // state = { hoverPhotos: false };
+  //
+  // toggleHover = e => {
+  //   this.setState({ hoverPhotos: !this.state.hoverPhotos });
+  // };
+  //
   showPinSaverModal = e => {
     e.stopPropagation();
   }
@@ -16,27 +16,29 @@ class PinsListItem extends React.Component {
   goToPin = e => {
     this.props.history.push("/pins/" + this.props.pin.id)
   }
-
-  mouseOut = event => {
-    let e = event.toElement || event.relatedTarget;
-    if(!e) { return}
-    if (e.parentNode.className == "pinCover" || e.className == "pinCover" || e.className.includes("dontChange")) {
-      return
-    } else {
-      this.toggleHover();
-    }
-  };
+  //
+  // mouseOut = event => {
+  //   let e = event.toElement || event.relatedTarget;
+  //   if(!e) { return}
+  //   if (e.parentNode.className == "pinCover" || e.className == "pinCover" || e.className.includes("dontChange")) {
+  //     return
+  //   } else {
+  //     this.toggleHover();
+  //   }
+  // };
 
   render() {
     let { pin } = this.props;
     return (
       <div className="PinListContainer">
-        <li className="PinsListItem" onMouseOver={this.toggleHover}>
+        <li className="PinsListItem"
+          // onMouseOver={this.toggleHover}
+          >
           <img src={pin.image_url} alt="pin" />
         </li>
         <div
-          className={this.state.hoverPhotos ? "pinCover" : "hidePinCover"}
-          onMouseOut={this.mouseOut}
+          className={this.props.hoverPhotos ? "pinCover" : "hidePinCover"}
+          // onMouseOut={this.mouseOut}
           onClick={this.goToPin}
         >
           <button className="show-pinCreate-modal" onClick={this.showPinSaverModal}>
