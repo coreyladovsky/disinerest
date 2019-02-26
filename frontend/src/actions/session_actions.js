@@ -33,6 +33,7 @@ export const getUser = () => dispatch => {
     });
 };
 
+
 export const login = user => dispatch =>
   SessionApiUtil.login(user)
     .then(usr => {
@@ -49,6 +50,7 @@ export const logout = () => dispatch =>
     return dispatch(receiveCurrentUser(null));
   });
 
+
 export const signup = user => dispatch =>
   SessionApiUtil.signUp(user)
     .then(usr => {
@@ -63,9 +65,13 @@ export const checkAuthenticateStatus = () => dispatch => {
     } else {
       if (user.data.email) {
         logout();
+        Authenticate.deauthenticateUser();
       } else {
         Authenticate.deauthenticateUser();
       }
     }
+  })
+  .catch(err => {
+    Authenticate.deauthenticateUser();
   });
 };
