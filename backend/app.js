@@ -12,9 +12,6 @@ var logger = require('morgan');
 const passport = require('passport');
 const session = require('express-session');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/index');
-
 var app = express();
 
 // view engine setup

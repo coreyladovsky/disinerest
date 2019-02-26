@@ -8,7 +8,7 @@ const createPin = (req, res, next) => {
     )
     .then(pin => {
       res.status(200).json({
-        newPin: pin,
+        pin,
         status: "success",
         message: "NEW PIN ADDED!"
       });

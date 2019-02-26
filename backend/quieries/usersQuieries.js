@@ -49,7 +49,7 @@ const getUsersBoards = (req, res, next) => {
       res.status(200).json({
         boards,
         status: "success",
-        message: "RETREIVED USERS PINS"
+        message: "RETREIVED USERS BOARDS"
       });
     })
     .catch(err => next(err));

@@ -37,3 +37,10 @@ export const fetchQueryPins = query => dispatch => {
       return dispatch(receiveErrors(err.response));
     });
 };
+
+export const createPin = pin => dispatch =>
+  PinsApiUtil.createPin(pin)
+  .then(pin => {
+    return dispatch(receivePin(pin.data.pin))
+  })
+  .catch(err => dispatch(receiveErrors(err.response)));

@@ -4,9 +4,9 @@ const { createUser, getUser, getUsersPins, getUsersBoards, deleteUser, updateUse
 
 /* GET users listing. */
 router.post('/', createUser );
+router.get('/:id/boards', getUsersBoards );
 router.get('/:id', getUser );
 router.get('/:id/pins', getUsersPins );
-router.get('/:id/boards', getUsersBoards );
 router.delete('/:id', deleteUser );
 router.patch('/:id', updateUser );
 

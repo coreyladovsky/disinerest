@@ -9,7 +9,7 @@ const createBoard = (req, res, next) => {
     )
     .then(board => {
       res.status(200).json({
-        newBoard: board,
+        board: board,
         status: "success",
         message: "NEW BOARD ADDED!"
       });
