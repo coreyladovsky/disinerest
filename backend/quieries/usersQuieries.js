@@ -55,6 +55,19 @@ const getUsersBoards = (req, res, next) => {
     .catch(err => next(err));
 };
 
+const getCurrentUsersBoards = (req, res, next) => {
+  db
+    .any("SELECT * FROM boards WHERE user_id = " + req.user.id)
+    .then(boards => {
+      res.status(200).json({
+        boards,
+        status: "success",
+        message: "RETREIVED USERS BOARDS"
+      });
+    })
+    .catch(err => next(err));
+};
+
 const deleteUser = (req, res, next) => {
   let userId = parseInt(req.params.id);
   db
@@ -103,6 +116,7 @@ module.exports = {
   getUser,
   getUsersPins,
   getUsersBoards,
+  getCurrentUsersBoards,
   deleteUser,
   updateUser
 };

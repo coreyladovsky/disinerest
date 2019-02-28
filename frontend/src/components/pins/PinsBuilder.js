@@ -6,7 +6,7 @@ class PinsBuilder extends React.Component {
   state = { pinTitle: "", pinDescription: "", pinLink: "", pinUrl: null, pinFile: null, boardId: null}
 
   componentDidMount() {
-    this.props.fetchUserBoards(this.props.match.params.id)
+    this.props.fetchCurrentUserBoards()
   }
 
   updateFile = (e) => {

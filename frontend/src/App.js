@@ -24,7 +24,7 @@ class App extends Component {
           <AuthRoute path="/signup" component={SignUpContainer} />
           <AuthRoute path="/login" component={LoginContainer} />
         <ProtectedRoute path="/pins/:id" component={PinsShowContainer} />
-        <ProtectedRoute path="/:id/pins/pin-builder" component={PinsBuilderContainer} />
+        <ProtectedRoute path="/pins/pin-builder" component={PinsBuilderContainer} />
         </div>
       </BrowserRouter>
     );

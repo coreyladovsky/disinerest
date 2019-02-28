@@ -26,3 +26,10 @@ export const fetchUserBoards = (id) => dispatch =>
       return dispatch(receiveBoards(boards.data.boards));
     })
     .catch(err => dispatch(receiveErrors(err.response)));
+
+export const fetchCurrentUserBoards = () => dispatch =>
+  BoardsApiUtil.fetchCurrentUserBoards()
+    .then(boards => {
+      return dispatch(receiveBoards(boards.data.boards));
+    })
+    .catch(err => dispatch(receiveErrors(err.response)));
