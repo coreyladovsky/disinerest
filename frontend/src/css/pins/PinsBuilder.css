@@ -1,3 +1,28 @@
 .PinsBuilder {
   padding-top: 65px;
 }
+
+.drag-and-drop {
+
+  width: 200px;
+  height: 200px;
+}
+
+
+
+
+.image-input {
+  position: absolute;
+  z-index: 1;
+  width: 200px;
+  height: 200px;
+  background: yellow;
+  opacity: 0;
+}
+
+.image-preview {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background: green;
+}

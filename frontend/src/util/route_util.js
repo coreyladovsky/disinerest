@@ -1,32 +1,34 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Route, Redirect, withRouter } from "react-router-dom";
-import Authenticate from './auth_util';
+import Authenticate from "./auth_util";
 
-const Auth = ({ component: Component, path, loggedIn }) => (
-  <Route
-    path={path}
-    render={props =>
-      !loggedIn ? <Component {...props} /> : <Redirect to="/" />
-    }
-  />
-);
-const Protected = ({ component: Component, path, loggedIn }) => (
-  <Route
-    path={path}
-    render={props =>{
-    return  loggedIn ? <Component {...props} /> : <Redirect to="/login" />
-  }
-    }
-  />
-);
+const Auth = ({ component: Component, path, loggedIn }) => {
+  return (
+    <Route
+      path={path}
+      render={props => {
+        return !loggedIn ? <Component {...props} /> : <Redirect to="/" />;
+      }}
+    />
+  );
+};
+const Protected = ({ component: Component, path, loggedIn }) => {
+  return (
+    <Route
+      path={path}
+      render={props => {
+        return loggedIn ? <Component {...props} /> : <Redirect to="/login" />;
+      }}
+    />
+  );
+};
 const HideAuth = ({ component: Component, path, loggedIn }) => (
   <Route
     path={path}
-    render={props =>{
-    return  loggedIn ? <Component {...props} /> : null
-  }
-    }
+    render={props => {
+      return loggedIn ? <Component {...props} /> : null;
+    }}
   />
 );
 

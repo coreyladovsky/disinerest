@@ -44,7 +44,7 @@ const getUsersPins = (req, res, next) => {
 
 const getUsersBoards = (req, res, next) => {
   db
-    .any("SELECT * FROM boards WHERE user_id = " + Number(req.params.id))
+    .any("SELECT boards.id, boards.user_id, pin_ref.board_pins FROM boards JOIN (SELECT user_boards.id  AS board_id, array_agg(pins.id) AS board_pins FROM pins JOIN (SELECT * FROM boards WHERE boards.user_id =$1) AS user_boards ON pins.board_id = user_boards.id GROUP BY user_boards.id) AS pin_ref ON pin_ref.board_id = boards.id", Number(req.params.id))
     .then(boards => {
       res.status(200).json({
         boards,
@@ -55,9 +55,11 @@ const getUsersBoards = (req, res, next) => {
     .catch(err => next(err));
 };
 
+// SELECT boards.id, boards.user_id, pin_ref.board_pins FROM boards JOIN (SELECT user_boards.id  AS board_id, array_agg(pins.id) AS board_pins FROM pins JOIN (SELECT * FROM boards WHERE boards.user_id = 2) AS user_boards ON pins.board_id = user_boards.id GROUP BY user_boards.id) AS pin_ref ON pin_ref.board_id = boards.id
+
 const getCurrentUsersBoards = (req, res, next) => {
   db
-    .any("SELECT * FROM boards WHERE user_id = " + req.user.id)
+    .any("SELECT boards.id, boards.user_id, pin_ref.board_pins FROM boards JOIN (SELECT user_boards.id  AS board_id, array_agg(pins.id) AS board_pins FROM pins JOIN (SELECT * FROM boards WHERE boards.user_id =$1) AS user_boards ON pins.board_id = user_boards.id GROUP BY user_boards.id) AS pin_ref ON pin_ref.board_id = boards.id" + req.user.id)
     .then(boards => {
       res.status(200).json({
         boards,
