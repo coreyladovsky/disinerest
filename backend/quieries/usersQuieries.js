@@ -16,9 +16,16 @@ const createUser = (req, res, next) => {
     .catch(err => next(err));
 };
 
+// SELECT users.id, users.email, users.age, users.first_name, users.last_name, users.location, users.image_url AS avatar, users.gender,  ARRAY_AGG(boards.id) AS user_boards, ARRAY_AGG(pins.id) AS user_pins
+// FROM users
+// JOIN boards ON boards.user_id = users.id
+// JOIN pins ON pins.user_id = users.id
+// WHERE users.id = 1
+// GROUP BY users.id, users.email, users.age, users.first_name, users.last_name, users.location, users.image_url, users.gender
+
 const getUser = (req, res, next) => {
   db
-    .one("SELECT * FROM users WHERE id = " + Number(req.params.id))
+    .one("SELECT users.id, users.email, users.age, users.first_name, users.last_name, users.location, users.image_url AS avatar, users.gender,  ARRAY_AGG(DISTINCT boards.id) AS user_boards, ARRAY_AGG(DISTINCT pins.id) AS user_pins FROM users  JOIN boards ON boards.user_id = users.id JOIN pins ON pins.user_id = users.id WHERE users.id = $1 GROUP BY users.id, users.email, users.age, users.first_name, users.last_name, users.location, users.image_url, users.gender", Number(req.params.id))
     .then(data => {
       res.status(200).json({
         user: data,
