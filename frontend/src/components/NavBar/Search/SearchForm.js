@@ -1,5 +1,4 @@
 import React from "react";
-// import mag from "../../../assets/mag.png";
 import { withRouter } from 'react-router-dom'
 import '../../../css/SearchForm.css'
 
