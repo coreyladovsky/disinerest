@@ -10,6 +10,7 @@ import HomeContainer from './components/HomeContainer';
 import NavBarContainer from './components/NavBar/NavBarContainer';
 import PinsShowContainer from './components/pins/PinsShowContainer';
 import PinsBuilderContainer from './components/pins/PinsBuilderContainer';
+import UserShowContainer from './components/users/UserShowContainer';
 
 class App extends Component {
   componentDidMount() {
@@ -25,6 +26,7 @@ class App extends Component {
           <AuthRoute path="/login" component={LoginContainer} />
         <ProtectedRoute path="/pins/:id" component={PinsShowContainer} />
         <ProtectedRoute path="/pins/pin-builder" component={PinsBuilderContainer} />
+        <ProtectedRoute path="/users/:id" component={UserShowContainer} />
         </div>
       </BrowserRouter>
     );

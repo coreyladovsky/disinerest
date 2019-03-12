@@ -3,7 +3,7 @@ import { receiveErrors, RECEIVE_ERRORS } from "./session_actions";
 
 export const RECEIVE_USER = "RECEIVE_USER";
 
-export const receieUser = user => ({
+export const receiveUser = user => ({
   type: RECEIVE_USER,
   user
 });
@@ -11,7 +11,9 @@ export const receieUser = user => ({
 export const fetchUser = userId => dispatch => {
   return UsersApiUtil.fetchUser(userId)
     .then(res => {
-      return dispatch(receieUser(res.data.user));
+      return dispatch(receiveUser(res.data.user));
     })
-    .catch(err => dispatch(receiveErrors(err.response)));
+    .catch(err =>{
+       dispatch(receiveErrors(err.response))
+     });
 };

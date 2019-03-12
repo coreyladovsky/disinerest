@@ -51,7 +51,7 @@ class NavBar extends React.Component {
             </li>
             <li>
               <NavLink
-                to={"/" + this.props.currentUser.id}
+                to={"/users/" + this.props.currentUser.id}
                 className="userLink"
               >
                 <div>
