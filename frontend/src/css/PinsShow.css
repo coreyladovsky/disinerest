@@ -59,8 +59,9 @@
   width: 565px;
   background: url(../assets/TranspFills/images/white15.png);
   position: absolute;
-  height: 85%;
-  margin-top: 55px;
+  height: 70%;
+  margin-top: -77%;
+  /* border: 2px solid red; */
 }
 
 .whiteImageCover:hover {
@@ -69,6 +70,7 @@
 
 .whiteImageCoverHide {
   display: none;
+
 }
 
 .pinControl .show-pinCreate-modal {
@@ -161,9 +163,14 @@
   transform: rotate(45deg);
 }
 
+.pinOwnerInfo {
+  width: 90%;
+}
+
 .pinOwnerInfo .displayInfo {
   display: flex;
   justify-content: left;
+  align-items: center;
   width: 100%;
 }
 
@@ -171,4 +178,11 @@
   width: 30px;
   height: 30px;
   border-radius: 50%;
+  margin: 10px;
+}
+
+.pinOwnerInfo .displayInfo .diplayInfoUserName {
+  margin: 10px;
+  font-weight: bold;
+  font-family: sans-serif;
 }

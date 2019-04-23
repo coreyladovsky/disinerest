@@ -57,16 +57,16 @@ class PinsShow extends React.Component {
                 Save
               </button>
             </div>
-
-            <img className="picShowCover" src={pin.image_url} onMouseOver={this.toggleHover} />
-            <div
-              className={
-                this.state.hoverPhotos
-                  ? "whiteImageCover"
-                  : "whiteImageCoverHide"
-              }
-              onMouseOut={this.toggleHover.bind(this)}
-            />
+            <div className="picShowHolder" onMouseOver={this.toggleHover} onMouseOut={this.toggleHover.bind(this)}>
+              <img className="picShowCover" src={pin.image_url}  />
+              <div
+                className={
+                  this.state.hoverPhotos
+                    ? "whiteImageCover"
+                    : "whiteImageCoverHide"
+                }
+              />
+          </div>
             <a className="pinLinkTag" href={pin.link_url} target="_blank">
               <i className="fa fa-arrow-up" aria-hidden="true" /> {pin.link_url}
             </a>
@@ -78,7 +78,7 @@ class PinsShow extends React.Component {
                   src={pin.owner_image ? pin.owner_image : defaultImage}
                   alt="pin owner"
                 />
-              <div>{pin.owner_email ? pin.owner_email.split("@")[0]: "Unknown"}</div>
+              <div className="diplayInfoUserName">{pin.owner_email ? pin.owner_email.split("@")[0]: "Unknown"}</div>
               </div>
             </div>
           </div>
