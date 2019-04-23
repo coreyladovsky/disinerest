@@ -7,3 +7,5 @@ export const fetchPin = pinId => axios.get("/api/pins/" + pinId);
 export const fetchQueryPins = query => axios.post("/api/pins/search", query);
 
 export const createPin = pin => axios.post("/api/pins", pin);
+
+export const fetchUserPins = userId => axios.get(`/api/users/${userId}/pins`)

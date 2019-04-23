@@ -38,6 +38,15 @@ export const fetchQueryPins = query => dispatch => {
     });
 };
 
+
+export const fetchUserPins = (id) => dispatch =>
+  PinsApiUtil.fetchUserPins(id)
+    .then(pins => {
+      return dispatch(receivePins(pins.data.pins));
+    })
+    .catch(err => dispatch(receiveErrors(err.response)));
+
+
 export const createPin = pin => dispatch =>
   PinsApiUtil.createPin(pin)
   .then(pin => {

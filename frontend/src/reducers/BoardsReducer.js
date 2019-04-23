@@ -12,7 +12,7 @@ const BoardsReducer = (oldState = {}, action) => {
   Object.freeze(oldState);
   switch (action.type) {
     case RECEIVE_BOARDS:
-      return normalizeData(action.boards);
+      return merge({}, oldState, normalizeData(action.boards));
     case RECEIVE_BOARD:
       return merge({}, oldState, {[action.board.id]: action.board} );
     default:
