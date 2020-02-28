@@ -5,7 +5,7 @@ import { getUser, checkAuthenticateStatus } from "./actions/session_actions";
 import { BrowserRouter, Route } from "react-router-dom";
 import { HideAuthRoute, AuthRoute, ProtectedRoute } from './util/route_util';
 import SignUpContainer from './components/auth/SignUpContainer';
-import LoginContainer from './components/auth/LoginContainer';
+import Login from './components/auth/Login';
 import HomeContainer from './components/HomeContainer';
 import NavBarContainer from './components/NavBar/NavBarContainer';
 import PinsShowContainer from './components/pins/PinsShowContainer';
@@ -23,7 +23,7 @@ class App extends Component {
           <ProtectedRoute path="/" component={NavBarContainer} />
           <Route exact path={["/","/signup", "/login"]} component={HomeContainer} />
           <AuthRoute path="/signup" component={SignUpContainer} />
-          <AuthRoute path="/login" component={LoginContainer} />
+          <AuthRoute path="/login" component={Login} />
         <ProtectedRoute path="/pins/:id" component={PinsShowContainer} />
         <ProtectedRoute path="/pins/pin-builder" component={PinsBuilderContainer} />
         <ProtectedRoute path="/users/:id" component={UserShowContainer} />

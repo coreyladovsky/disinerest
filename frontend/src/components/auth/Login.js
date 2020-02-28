@@ -1,41 +1,45 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import logo from "../../assets/logo.png"
 import Authenticate from '../../util/auth_util';
-
+import {
+  login,
+  signup,
+  clearErrors,
+  getUser,
+  checkAuthenticateStatus
+} from "../../actions/session_actions";
 import '../../css/SignUp.css';
-class Login extends React.Component {
-  state = { email: "", password: ""};
 
-  componentDidMount() {
-    this.props.checkAuthenticateStatus()
+const useInput = (initialValue) => {
+  const [value, setValue] = useState(initialValue);
+  const handleChange = e => {
+    setValue(e.target.value)
   }
+  return { value, onChange: handleChange }
+}
 
-  handleChange = (e) => {
-    this.setState({[e.target.id]: e.target.value});
-  }
+const Login = () => {
+  const email = useInput("")
+  const password = useInput("")
+  const dispatch = useDispatch()
 
-  handleSubmit = async (e) => {
+  useEffect(() => {
+    dispatch(checkAuthenticateStatus)
+  }, [])
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    this.props.login(this.state)
-    .then(
-      () => {
-        Authenticate.authenticateUser(this.state.email);
-      }
-    )
+    await dispatch(login({email: email.value, password: password.value }))
+    Authenticate.authenticateUser(email.value);
   }
 
-  demoLogin = () => {
-    this.props.login({email: "guestdemo@gmail.com", password: "guestdemo"})
-    .then(
-      () => {
-        Authenticate.authenticateUser("guestdemo@gmail.com");
-      }
-    )
+  const demoLogin = async () => {
+    await dispatch(login({email: "guestdemo@gmail.com", password: "guestdemo"}))
+    Authenticate.authenticateUser("guestdemo@gmail.com");
   }
 
-  render() {
-    let {email, password, age} = this.state;
     return (
       <div className="SignUp">
         <Link to="/signup" >  <button  className="Login">Sign Up </button></Link>
@@ -45,11 +49,11 @@ class Login extends React.Component {
           <div className="text">
           Enjoy your free dinterest account
           </div>
-          <form onSubmit={this.handleSubmit}>
-            <input id="email" type="text" placeholder="Email" value={email} onChange={this.handleChange} />
-            <input id="password" type="password" placeholder="Create a password" value={password} onChange={this.handleChange}  />
+          <form onSubmit={handleSubmit}>
+            <input id="email" type="text" placeholder="Email" {...email} />
+            <input id="password" type="password" placeholder="Create a password" {...password} />
             <button type="submit">Log in</button>
-            <button type="button" onClick={this.demoLogin}>Demo Log in</button>
+            <button type="button" onClick={demoLogin}>Demo Log in</button>
           </form>
           <div className="already-a-member">
               <Link to="/signup" >Need an accout? Sign up now</Link>
@@ -57,7 +61,7 @@ class Login extends React.Component {
         </div>
       </div>
     );
-  }
+
 }
 
 export default Login;
