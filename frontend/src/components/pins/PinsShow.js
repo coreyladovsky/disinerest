@@ -1,34 +1,35 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, {useState, useEffect} from "react";
+import { Link, useParams, useHistory } from "react-router-dom";
 import defaultImage from "../../assets/defaultUsere.jpg";
+import { fetchPin } from '../../actions/pins_actions';
+import { useDispatch, useSelector } from 'react-redux';
+
 import "../../css/PinsShow.css";
 
-class PinsShow extends React.Component {
-  state = { hoverPhotos: false };
-  toggleHover = e => {
-    this.setState({ hoverPhotos: !this.state.hoverPhotos });
-  };
+const PinsShow = () => {
+  const [hoverPhotos, setHoverPhotos] = useState(false);
+  const dispatch = useDispatch();
+  const { id } = useParams();
+  const history = useHistory();
+  const toggleHover = e => setHoverPhotos(!hoverPhotos)
+  const showPinSaverModal = e => e.stopPropagation()
+  const goBack = e => history.goBack()
+  const currentUser = useSelector(state => state.session.currentUser)
+  const pin = useSelector(state => state.pins[id])
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
-  showPinSaverModal = e => {
-    e.stopPropagation();
-  };
+  useEffect(() => {
+    dispatch(fetchPin(id))
+  }, [])
 
-  componentDidMount() {
-    window.scrollTo(0, 0);
-    this.props.fetchPin(this.props.match.params.id);
-  }
-
-  goBack = e => {
-    this.props.history.goBack();
-  };
-  render() {
-    let { pin, currentUser } = this.props;
     if (!pin) return null;
     if (!currentUser) return null;
     return (
       <div className="PinsShow">
-        <button className="show-back-button" onClick={this.goBack.bind(this)}>
-          <i class="fa fa-chevron-left" aria-hidden="true" />
+        <button className="show-back-button" onClick={goBack}>
+          <i className="fa fa-chevron-left" aria-hidden="true" />
           Back
         </button>
         <div className="PinsDisplayBox">
@@ -47,21 +48,21 @@ class PinsShow extends React.Component {
 
               <button
                 className="show-pinCreate-modal"
-                onClick={this.showPinSaverModal}
+                onClick={showPinSaverModal}
               >
                 {" "}
                 <i
-                  class="fa fa-thumb-tack dontChange"
+                  className="fa fa-thumb-tack dontChange"
                   aria-hidden="true"
                 />{" "}
                 Save
               </button>
             </div>
-            <div className="picShowHolder" onMouseOver={this.toggleHover} onMouseOut={this.toggleHover.bind(this)}>
+            <div className="picShowHolder" onMouseOver={toggleHover} onMouseOut={toggleHover}>
               <img className="picShowCover" src={pin.image_url}  />
               <div
                 className={
-                  this.state.hoverPhotos
+                  hoverPhotos
                     ? "whiteImageCover"
                     : "whiteImageCoverHide"
                 }
@@ -85,7 +86,7 @@ class PinsShow extends React.Component {
         </div>
       </div>
     );
-  }
+
 }
 
 export default PinsShow;
