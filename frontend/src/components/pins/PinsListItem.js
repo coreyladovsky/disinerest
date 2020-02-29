@@ -1,6 +1,6 @@
 import React from "react";
 import "../../css/PinsListItem.css";
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 class PinsListItem extends React.Component {
   state = { hoverPhotos: false };

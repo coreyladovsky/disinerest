@@ -12,7 +12,7 @@ const PinsReducer = (oldState = {}, action) => {
   Object.freeze(oldState);
   switch (action.type) {
     case RECEIVE_PINS:
-      return merge({}, oldState, normalizeData(action.pins));
+      return merge({}, normalizeData(action.pins));
     case RECEIVE_PIN:
       return merge({}, oldState, {[action.pin.id]: action.pin} );
     default:

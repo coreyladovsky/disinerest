@@ -1,99 +1,93 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
+import { createPin } from "../../actions/pins_actions";
+import { createBoard, fetchCurrentUserBoards } from "../../actions/boards_actions";
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory, useParams } from 'react-router-dom';
+import { useInput } from '../../util/customHooks';
 import "../../css/pins/PinsBuilder.css";
 
-class PinsBuilder extends React.Component {
-  state = {
-    pinTitle: "",
-    pinDescription: "",
-    pinLink: "",
-    pinUrl: null,
-    pinFile: null,
-    boardId: null
-  };
+const PinsBuilder = () => {
+  const pinTitle = useInput("")
+  const pinDescription = useInput("")
+  const pinLink = useInput("")
+  const [pinUrl, setPinUrl] = useState(null)
+  const [pinFile, setPinFile] = useState(null)
+  const [boardId, setBoardId] = useState(null)
+  const dispatch = useDispatch();
+  const boards = useSelector(state => Object.values(state.boards));
+  const currentUser = useSelector(state => state.session.currentUser);
+  const { id } = useParams()
 
-  componentDidMount() {
-    this.props.fetchCurrentUserBoards();
-  }
 
-  updateFile = e => {
+  useEffect(() => dispatch(fetchCurrentUserBoards(currentUser.id), []));
+
+  const updateFile = e => {
     let file = e.currentTarget.files[0];
     let fileReader = new FileReader();
     fileReader.addEventListener("load", () => {
-      this.setState({ pinFile: file, pinUrl: fileReader.result });
+      setPinFile(file);
+      setPinUrl(fileReader.result )
     });
     if (file) {
       fileReader.readAsDataURL(file);
     }
   };
 
-  pinUrlExternal = e => {
-    this.setState({ pinUrl: e.target.value });
-  };
+  const pinUrlExternal = e => setPinUrl(e.target.value );
 
-  updateForm = e => {
-    this.setState({ [e.target.id]: e.target.value });
-  };
-
-  handleSubmit = e => {
+  const history = useHistory();
+  const handleSubmit = async e => {
     e.preventDefault();
-    this.props
-      .createPin({
-        title: this.state.pinTitle,
-        description: this.state.pinDescription,
-        link_url: this.state.pinLink,
-        image_url: this.state.pinUrl,
-        original_poster_id: this.props.match.params.id,
-        user_id: this.props.match.params.id,
+      await dispatch(createPin({
+        title: pinTitle.value,
+        description: pinDescription.value,
+        link_url: pinLink.value,
+        image_url: pinUrl,
+        original_poster_id: id,
+        user_id: currentUser.id,
         board_id: 1
-      })
-      .then(res => {
-        this.props.history.push("/");
-      });
+      }))
+      history.push("/");
   };
 
-  render() {
-    let { pinTitle, pinDescription, pinLink } = this.state;
     return (
       <div className="PinsBuilder">
-        <form onSubmit={this.handleSubmit.bind(this)}>
+        <form onSubmit={handleSubmit}>
           <div className="drag-and-drop">
             <input
               type="file"
               className="image-input"
               accept="image/*"
-              onChange={this.updateFile.bind(this)}
+              onChange={updateFile}
             />
-            <img className="image-preview" src={this.state.pinUrl} />
+          <img className="image-preview" src={pinUrl.value} />
           </div>
           <input
             type="text"
-            onChange={this.pinUrlExternal}
+            onChange={pinUrlExternal}
             placeholder="Save from site"
           />
           <input
             type="text"
             id="pinTitle"
-            onChange={this.updateForm}
             placeholder="Add a title"
-            value={pinTitle}
+            {...pinTitle}
           />
           <textarea
             type="text"
             id="pinDescription"
-            onChange={this.updateForm}
             placeholder="Say more about this Pin"
-            value={pinDescription}
-          />
+            {...pinDescription}
+            />
           <input
             type="text"
             id="pinLink"
-            onChange={this.updateForm}
             placeholder="Add the URL this pin links to"
-            value={pinLink}
+            {...pinLink}
           />
           Select Board or Create New Board
           <select>
-            {this.props.boards.map(board => (
+            {boards.map(board => (
               <option>{board.title}</option>
             ))}
           </select>
@@ -102,7 +96,6 @@ class PinsBuilder extends React.Component {
         </form>
       </div>
     );
-  }
 }
 
 export default PinsBuilder;
