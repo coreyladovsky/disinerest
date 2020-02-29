@@ -1,26 +1,30 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { PinsList } from './pins/PinsList';
 import '../css/Home.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchAllPins } from '../actions/pins_actions';
+import { useLocation } from 'react-router-dom';
 
-class Home extends React.Component {
-  componentDidMount(){
-    // if(this.props.pins.length <= 1) {
-      this.props.fetchAllPins();
-    // }
-  }
-  render () {
+const Home = () =>  {
+  const dispatch = useDispatch();
+
+  useEffect(() => { dispatch(fetchAllPins()) }, [])
+
+  const location = useLocation();
     let modal
-    if(this.props.path === "/signup" || this.props.path === "/login" ) {
+    if(location.path === "/signup" || location.path === "/login" ) {
        modal = " modal"
     } else {
       modal = ""
     }
+
+    const pins = useSelector(state => Object.values(state.pins));
+
     return(
       <div className={"Home" + modal}>
-        <PinsList pins={this.props.pins}/>
+        <PinsList pins={pins}/>
       </div>
     )
-  }
 }
 
 export default Home;

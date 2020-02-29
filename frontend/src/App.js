@@ -5,7 +5,7 @@ import { BrowserRouter, Route } from "react-router-dom";
 import { AuthRoute, ProtectedRoute } from './util/route_util';
 import SignUp from './components/auth/SignUp';
 import Login from './components/auth/Login';
-import HomeContainer from './components/HomeContainer';
+import Home from './components/Home';
 import NavBar from './components/NavBar/NavBar';
 import PinsShow from './components/pins/PinsShow';
 import PinsBuilder from './components/pins/PinsBuilder';
@@ -21,7 +21,9 @@ function App () {
       <BrowserRouter>
         <div className="App">
           <ProtectedRoute path="/" component={NavBar} />
-          <Route exact path={["/","/signup", "/login"]} component={HomeContainer} />
+          <Route exact path={["/","/signup", "/login"]}>
+            <Home/>
+          </Route>
           <AuthRoute path="/signup" component={SignUp} />
           <AuthRoute path="/login" component={Login} />
         <ProtectedRoute path="/pins/:id" component={PinsShow} />

@@ -20,9 +20,7 @@ const PinsShow = () => {
     window.scrollTo(0, 0)
   }, [])
 
-  useEffect(() => {
-    dispatch(fetchPin(id))
-  }, [])
+  useEffect(() => { dispatch(fetchPin(id))}, [])
 
     if (!pin) return null;
     if (!currentUser) return null;
