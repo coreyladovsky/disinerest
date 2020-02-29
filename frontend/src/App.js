@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import "./App.css";
-import { getUser, checkAuthenticateStatus } from "./actions/session_actions";
+import { checkAuthenticateStatus } from "./actions/session_actions";
 import { BrowserRouter, Route } from "react-router-dom";
-import { HideAuthRoute, AuthRoute, ProtectedRoute } from './util/route_util';
-import SignUpContainer from './components/auth/SignUpContainer';
+import { AuthRoute, ProtectedRoute } from './util/route_util';
+import SignUp from './components/auth/SignUp';
 import Login from './components/auth/Login';
 import HomeContainer from './components/HomeContainer';
-import NavBarContainer from './components/NavBar/NavBarContainer';
+import NavBar from './components/NavBar/NavBar';
 import PinsShow from './components/pins/PinsShow';
 import PinsBuilderContainer from './components/pins/PinsBuilderContainer';
 import UserShowContainer from './components/users/UserShowContainer';
@@ -20,9 +20,9 @@ function App () {
     return (
       <BrowserRouter>
         <div className="App">
-          <ProtectedRoute path="/" component={NavBarContainer} />
+          <ProtectedRoute path="/" component={NavBar} />
           <Route exact path={["/","/signup", "/login"]} component={HomeContainer} />
-          <AuthRoute path="/signup" component={SignUpContainer} />
+          <AuthRoute path="/signup" component={SignUp} />
           <AuthRoute path="/login" component={Login} />
         <ProtectedRoute path="/pins/:id" component={PinsShow} />
         <ProtectedRoute path="/pins/pin-builder" component={PinsBuilderContainer} />
@@ -32,18 +32,4 @@ function App () {
     );
 
 }
-export default App; 
-// const mapStateToProps = state => {
-//   return{}
-// }
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     getUser: () => dispatch(getUser()),
-//     checkAuthenticateStatus: () => dispatch(checkAuthenticateStatus())
-//   };
-// };
-//
-// export default connect(
-//   null,
-//   mapDispatchToProps
-// )(App);
+export default App;

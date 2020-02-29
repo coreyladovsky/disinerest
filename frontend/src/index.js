@@ -8,7 +8,6 @@ import RootReducer from "./reducers/RootReducer";
 import logger from "redux-logger";
 import thunk from "redux-thunk";
 import { Provider } from "react-redux";
-import axios from 'axios'
 
 let store = createStore(RootReducer, {}, applyMiddleware(thunk, logger));
 

@@ -1,26 +1,30 @@
 import React from "react";
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import { useInput } from '../../util/customHooks';
 import logo from "../../assets/logo.png"
 import '../../css/SignUp.css';
 import Authenticate from '../../util/auth_util';
-class SignUp extends React.Component {
-  state = { email: "", password: "", age: "" };
+import { useDispatch } from 'react-redux';
+import {
+  login,
+  signup,
+} from "../../actions/session_actions";
 
-  handleChange = (e) => {
-    this.setState({[e.target.id]: e.target.value});
-  }
+const SignUp = () => {
+  const  email = useInput("");
+  const  password = useInput("");
+  const  age = useInput("");
+  const dispatch = useDispatch();
+  const history = useHistory();
 
-  handleSubmit = async (e) => {
-    let { email, password } = this.state;
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    let registration = await this.props.signup(this.state)
+    await dispatch(signup({email: email.value, password: password.value, age: age.value}))
     Authenticate.authenticateUser(email);
-    let loggedIn = await this.props.login({email, password})
-    this.props.history.push('/')
-
+    await dispatch(login({email, password}))
+    history.push('/')
   }
-  render() {
-    let {email, password, age} = this.state;
     return (
       <div className="SignUp">
         <Link to="/login" >  <button  className="Login"> Log in </button></Link>
@@ -30,10 +34,10 @@ class SignUp extends React.Component {
           <div className="text">
           Access dinterest's best ideas with a free account
           </div>
-          <form onSubmit={this.handleSubmit}>
-            <input id="email" type="text" placeholder="Email" value={email} onChange={this.handleChange} />
-            <input id="password" type="password" placeholder="Create a password" value={password} onChange={this.handleChange}  />
-            <input id="age" type="text" placeholder="Age" value={age} onChange={this.handleChange}  />
+          <form onSubmit={handleSubmit}>
+            <input id="email" type="text" placeholder="Email" {...email} />
+            <input id="password" type="password" placeholder="Create a password" {...password} />
+            <input id="age" type="text" placeholder="Age" {...age}  />
             <button type="submit">Sign Up</button>
           </form>
           <div className="already-a-member">
@@ -43,6 +47,5 @@ class SignUp extends React.Component {
       </div>
     );
   }
-}
 
-export default SignUp;
+  export default SignUp;
