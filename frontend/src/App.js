@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import "./App.css";
+import React, { useEffect, useState } from "react";
 import { checkAuthenticateStatus } from "./actions/session_actions";
 import { BrowserRouter, Route } from "react-router-dom";
 import { AuthRoute, ProtectedRoute } from './util/route_util';
@@ -9,27 +8,49 @@ import Home from './components/Home';
 import NavBar from './components/NavBar/NavBar';
 import PinsShow from './components/pins/PinsShow';
 import PinsBuilder from './components/pins/PinsBuilder';
-import UserShowContainer from './components/users/UserShowContainer';
+import UserShow from './components/users/UserShow';
 import { useDispatch } from 'react-redux';
 
 function App () {
+  const [user, setUser] = useState(null);
   const dispatch = useDispatch();
+
   useEffect(() => {
-    dispatch(checkAuthenticateStatus())
+    dispatch(checkAuthenticateStatus()).then(res => {
+        setUser(res);
+    })
   }, [])
+
+  if(user === null) return <div>Loading...</div>
     return (
       <BrowserRouter>
-        <div className="App">
-          <ProtectedRoute path="/" component={NavBar} />
+          <ProtectedRoute path="/">
+            <NavBar />
+          </ProtectedRoute>
+
           <Route exact path={["/","/signup", "/login"]}>
             <Home/>
           </Route>
-          <AuthRoute path="/signup" component={SignUp} />
-          <AuthRoute path="/login" component={Login} />
-        <ProtectedRoute path="/pins/:id" component={PinsShow} />
-        <ProtectedRoute path="/pins/pin-builder" component={PinsBuilder} />
-        <ProtectedRoute path="/users/:id" component={UserShowContainer} />
-        </div>
+
+          <AuthRoute path="/signup">
+            <SignUp/>
+          </AuthRoute>
+
+          <AuthRoute path="/login">
+            <Login/>
+          </AuthRoute>
+
+        <ProtectedRoute path="/pins/:id" >
+          <PinsShow />
+        </ProtectedRoute>
+
+        <ProtectedRoute path="/pins/pin-builder">
+          <PinsBuilder/>
+        </ProtectedRoute>
+
+        <ProtectedRoute path="/users/:id">
+          <UserShow/>
+        </ProtectedRoute>
       </BrowserRouter>
     );
 

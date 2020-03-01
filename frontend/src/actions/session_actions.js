@@ -58,7 +58,7 @@ export const signup = user => dispatch =>
     })
     .catch(errors => dispatch(receiveErrors(errors.response)));
 
-export const checkAuthenticateStatus = () => dispatch => {
+export const checkAuthenticateStatus = () =>  dispatch => {
   SessionApiUtil.getUser().then(user => {
     if (user.data.user.email === Authenticate.getToken()) {
       return dispatch(receiveCurrentUser(user.data.user));
