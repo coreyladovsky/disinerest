@@ -19,7 +19,9 @@ const PinsBuilder = () => {
   const { id } = useParams()
 
 
-  useEffect(() => dispatch(fetchCurrentUserBoards(currentUser.id), []));
+  useEffect(() => {
+     dispatch(fetchCurrentUserBoards(currentUser.id))
+  }, []);
 
   const updateFile = e => {
     let file = e.currentTarget.files[0];
@@ -60,7 +62,7 @@ const PinsBuilder = () => {
               accept="image/*"
               onChange={updateFile}
             />
-          <img className="image-preview" src={pinUrl.value} />
+          <img className="image-preview" src={pinUrl} />
           </div>
           <input
             type="text"

@@ -3,13 +3,22 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-import { createStore, applyMiddleware } from "redux";
-import RootReducer from "./reducers/RootReducer";
+// import { createStore, applyMiddleware } from "redux";
+// import RootReducer from "./reducers/RootReducer";
+import { reducer } from "./reducers/RootReducer";
 import logger from "redux-logger";
-import thunk from "redux-thunk";
-import { Provider } from "react-redux";
+// import thunk from "redux-thunk";
+import { configureStore, getDefaultMiddleware} from '@reduxjs/toolkit'
 
-let store = createStore(RootReducer, {}, applyMiddleware(thunk, logger));
+import { Provider } from "react-redux";
+const middleware = [...getDefaultMiddleware(), logger]
+
+// let store = createStore(RootReducer, {}, applyMiddleware(thunk, logger));
+let store = configureStore({
+  reducer, 
+  middleware
+});
+
 
 
 

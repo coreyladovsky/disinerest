@@ -1,26 +1,28 @@
 import * as PinsApiUtil from "../util/pins_api_util";
 import { receiveErrors, RECEIVE_ERRORS } from "./session_actions";
+import {receivePins, receivePin} from '../reducers/PinsSlice';
+// export const RECEIVE_PINS = "RECEIVE_PINS";
+// export const RECEIVE_PIN = "RECEIVE_PIN";
 
-export const RECEIVE_PINS = "RECEIVE_PINS";
-export const RECEIVE_PIN = "RECEIVE_PIN";
+// export const receivePins = pins => ({
+//   type: RECEIVE_PINS,
+//   pins
+// });
 
-export const receivePins = pins => ({
-  type: RECEIVE_PINS,
-  pins
-});
+// export const receivePin = pin => ({
+//   type: RECEIVE_PIN,
+//   pin
+// });
 
-export const receivePin = pin => ({
-  type: RECEIVE_PIN,
-  pin
-});
+export const fetchAllPins = () => async dispatch => {
+  try {  
+    let res = await PinsApiUtil.fetchAllPins()
+    return dispatch(receivePins(res.data.pins));   
+  } catch (err) {
+     dispatch(receiveErrors(err.response));
+  }
 
-export const fetchAllPins = () => dispatch =>
-  PinsApiUtil.fetchAllPins()
-    .then(pins => {
-      return dispatch(receivePins(pins.data.pins));
-    })
-    .catch(err => dispatch(receiveErrors(err.response)));
-
+}
 export const fetchPin = pinId => dispatch =>
   PinsApiUtil.fetchPin(pinId)
     .then(res => {
@@ -40,6 +42,7 @@ export const fetchQueryPins = query => dispatch => {
 
 
 export const fetchUserPins = (id) => dispatch =>
+
   PinsApiUtil.fetchUserPins(id)
     .then(pins => {
       return dispatch(receivePins(pins.data.pins));

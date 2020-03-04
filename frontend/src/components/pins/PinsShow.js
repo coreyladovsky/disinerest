@@ -37,7 +37,7 @@ const PinsShow = () => {
                 <Link to={"/pins/" + pin.id + "/edit"}>
                   {" "}
                   <div className="PinsShowEditButton">
-                    <i class="fa fa-pencil" aria-hidden="true" />
+                    <i className="fa fa-pencil" aria-hidden="true" />
                   </div>
                 </Link>
               ) : (

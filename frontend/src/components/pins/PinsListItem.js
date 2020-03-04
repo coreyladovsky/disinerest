@@ -24,8 +24,8 @@ const PinsListItem = ({ pin }) => {
     let e = event.toElement || event.relatedTarget;
     if (!e) return;
     if (
-      (e.parentNode && e.parentNode.className == "pinCover") ||
-      e.className == "pinCover" ||
+      (e.parentNode && e.parentNode.className === "pinCover") ||
+      e.className === "pinCover" ||
       (e.className && e.className.includes("dontChange"))
     ) {
       return;
