@@ -58,20 +58,22 @@ export const signup = user => dispatch =>
     })
     .catch(errors => dispatch(receiveErrors(errors.response)));
 
-export const checkAuthenticateStatus = () =>  dispatch => {
-  SessionApiUtil.getUser().then(user => {
-    if (user.data.user.email === Authenticate.getToken()) {
-      return dispatch(receiveCurrentUser(user.data.user));
+export const checkAuthenticateStatus = () => async dispatch => {
+  try {
+    let res = await SessionApiUtil.getUser()
+    if (res.data.user.email === Authenticate.getToken()) {
+      dispatch(receiveCurrentUser(res.data.user));
+      return res.data.user
     } else {
-      if (user.data.email) {
+      if (res.data.email) {
         logout();
         Authenticate.deauthenticateUser();
       } else {
         Authenticate.deauthenticateUser();
       }
     }
-  })
-  .catch(err => {
-    Authenticate.deauthenticateUser();
-  });
+  } catch (error) {   
+   Authenticate.deauthenticateUser();
+  }
+
 };

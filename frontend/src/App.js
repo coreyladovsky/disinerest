@@ -21,7 +21,7 @@ function App () {
     })
   }, [])
 
-  if(user === null) return <div>Loading...</div>
+  if(user === null ) return <div>Loading...</div>
     return (
       <BrowserRouter>
           <ProtectedRoute path="/">
