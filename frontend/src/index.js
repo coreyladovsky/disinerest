@@ -9,7 +9,7 @@ import { reducer } from "./reducers/RootReducer";
 import logger from "redux-logger";
 // import thunk from "redux-thunk";
 import { configureStore, getDefaultMiddleware} from '@reduxjs/toolkit'
-
+import { BrowserRouter } from 'react-router-dom'
 import { Provider } from "react-redux";
 const middleware = [...getDefaultMiddleware(), logger]
 
@@ -24,7 +24,9 @@ let store = configureStore({
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </Provider>,
   document.getElementById("root")
 );

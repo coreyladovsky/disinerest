@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { checkAuthenticateStatus } from "./actions/session_actions";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route, useLocation } from "react-router-dom";
 import { AuthRoute, ProtectedRoute } from './util/route_util';
 import SignUp from './components/auth/SignUp';
 import Login from './components/auth/Login';
@@ -21,9 +21,13 @@ function App () {
     })
   }, [])
 
+  const location = useLocation();
+  const style = location.pathname === "/login" || location.pathname === "/signup" ? "App" : ""
+
   if(user === null ) return <div>Loading...</div>
     return (
-      <BrowserRouter>
+      <div className={style}>
+ 
           <ProtectedRoute path="/">
             <NavBar />
           </ProtectedRoute>
@@ -51,7 +55,7 @@ function App () {
         <ProtectedRoute path="/users/:id">
           <UserShow/>
         </ProtectedRoute>
-      </BrowserRouter>
+      </div>
     );
 
 }
